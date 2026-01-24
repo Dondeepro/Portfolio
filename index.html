@@ -1,0 +1,1255 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Shihab Sarar Deepro — Creative Professional (Digital Marketing | Graphics Design)" />
+  <title>Shihab Sarar Deepro — Portfolio</title>
+
+  <style>
+    :root{
+      --bg:#0b1020;
+      --panel:#0f1730;
+      --panel2:#0c142b;
+      --text:#e8eefc;
+      --muted:#b7c4e3;
+      --brand:#7aa2ff;
+      --brand2:#66e0ff;
+      --line:rgba(255,255,255,.10);
+      --shadow: 0 16px 60px rgba(0,0,0,.45);
+      --radius: 18px;
+      --radius2: 26px;
+      --max: 1120px;
+    }
+    [data-theme="light"]{
+      --bg:#f6f8ff;
+      --panel:#ffffff;
+      --panel2:#f2f5ff;
+      --text:#0b1020;
+      --muted:#41507a;
+      --brand:#2f5cff;
+      --brand2:#0aa3c2;
+      --line:rgba(10,18,40,.12);
+      --shadow: 0 12px 40px rgba(10,18,40,.12);
+    }
+
+    *{ box-sizing:border-box; }
+    html{ scroll-behavior:smooth; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      background:
+        radial-gradient(1200px 700px at 15% -10%, rgba(122,162,255,.30), transparent 60%),
+        radial-gradient(900px 600px at 90% 0%, rgba(102,224,255,.22), transparent 55%),
+        var(--bg);
+      color:var(--text);
+      line-height:1.6;
+    }
+    a{ color:inherit; text-decoration:none; }
+    .container{ width:min(var(--max), calc(100% - 40px)); margin:0 auto; }
+
+    header{
+      position:sticky; top:0; z-index:60;
+      border-bottom:1px solid var(--line);
+      background: color-mix(in srgb, var(--bg) 78%, transparent);
+      backdrop-filter: blur(14px);
+    }
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:14px 0;
+      gap:14px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:12px;
+      font-weight:800; letter-spacing:.2px;
+    }
+
+    /* ✅ Navbar logo box: small profile pic */
+    .logo{
+      width:34px; height:34px; border-radius:12px;
+      border:1px solid var(--line);
+      background-image: url("images/profile.jpg");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      box-shadow: 0 10px 30px rgba(122,162,255,.25);
+      flex:0 0 auto;
+    }
+
+    nav ul{
+      list-style:none; display:flex; gap:14px; padding:0; margin:0;
+      align-items:center;
+    }
+    nav a{
+      padding:10px 12px; border-radius:12px;
+      color:var(--muted);
+      transition: all .18s ease;
+      border:1px solid transparent;
+    }
+    nav a:hover{ color:var(--text); border-color:var(--line); background: rgba(255,255,255,.05); }
+    nav a.active{ color:var(--text); border-color: color-mix(in srgb, var(--brand) 55%, var(--line)); background: rgba(122,162,255,.12); }
+
+    .nav-actions{ display:flex; gap:10px; align-items:center; }
+    .btn{
+      display:inline-flex; gap:10px; align-items:center; justify-content:center;
+      padding:10px 14px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.05);
+      color:var(--text);
+      cursor:pointer;
+      transition: transform .16s ease, background .16s ease, border-color .16s ease;
+      user-select:none;
+      font-weight:600;
+    }
+    .btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.08); border-color: color-mix(in srgb, var(--brand) 40%, var(--line)); }
+    .btn.primary{
+      border-color: color-mix(in srgb, var(--brand) 70%, var(--line));
+      background: linear-gradient(180deg, rgba(122,162,255,.22), rgba(122,162,255,.10));
+    }
+
+    .hamburger{ display:none; }
+    .mobile-menu{ display:none; padding:0 0 14px 0; }
+    .mobile-menu a{
+      display:block; padding:12px 10px; border-radius:14px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      margin-top:10px;
+      color:var(--muted);
+    }
+    .mobile-menu a.active{ color:var(--text); background: rgba(122,162,255,.12); border-color: color-mix(in srgb, var(--brand) 55%, var(--line)); }
+
+    section{ padding:72px 0; }
+    .grid{ display:grid; gap:18px; }
+    .two{ grid-template-columns: 1.15fr .85fr; }
+    .three{ grid-template-columns: repeat(3, 1fr); }
+
+    .card{
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    [data-theme="light"] .card{
+      background: linear-gradient(180deg, rgba(255,255,255,.92), rgba(255,255,255,.78));
+    }
+    .card-inner{ padding:18px; }
+    .muted{ color:var(--muted); }
+    .kicker{
+      font-size:13px;
+      color: color-mix(in srgb, var(--brand) 70%, var(--muted));
+      font-weight:800; letter-spacing:.12em; text-transform:uppercase;
+    }
+    h1{ font-size: clamp(34px, 5vw, 54px); line-height:1.05; margin:10px 0 12px; }
+    h2{ font-size: clamp(22px, 2.6vw, 30px); margin:0 0 10px; }
+    h3{ margin:0 0 8px; font-size:18px; }
+    p{ margin:10px 0; }
+
+    .pill{
+      display:inline-flex; gap:10px; align-items:center;
+      padding:10px 14px; border:1px solid var(--line); border-radius:999px;
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      backdrop-filter: blur(10px);
+    }
+
+    /* Hero */
+    .hero{ padding-top:34px; }
+    .hero-card{ border-radius: var(--radius2); position:relative; overflow:hidden; }
+    .hero-bg{
+      position:absolute; inset:-2px;
+      background:
+        radial-gradient(700px 420px at 20% 20%, rgba(122,162,255,.35), transparent 60%),
+        radial-gradient(620px 420px at 80% 30%, rgba(102,224,255,.22), transparent 60%),
+        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      pointer-events:none;
+    }
+    .hero-content{
+      position:relative;
+      padding:28px;
+      display:grid; gap:18px;
+      grid-template-columns: 1.25fr .75fr;
+      align-items:stretch;
+    }
+    .hero-cta{ display:flex; gap:10px; flex-wrap:wrap; margin-top:10px; }
+    .tag-row{ display:flex; flex-wrap:wrap; gap:10px; margin-top:12px; }
+    .tag{
+      padding:8px 10px; border-radius:999px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      color:var(--muted);
+      font-size:13px;
+    }
+
+    .profile{
+      border-radius: 22px;
+      border:1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
+      padding:18px;
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+    }
+    .profile .photo{
+      width:100%;
+      aspect-ratio: 1/1;
+      border-radius:18px;
+      border:1px solid var(--line);
+      overflow:hidden;
+      background: rgba(255,255,255,.03);
+    }
+    .profile .photo img{
+      width:100%; height:100%;
+      object-fit:cover;
+      display:block;
+    }
+    .mini{
+      border:1px solid var(--line);
+      border-radius:18px;
+      background: rgba(255,255,255,.04);
+      padding:14px;
+    }
+    .mini strong{ display:block; }
+    .mini .muted{ font-size:13px; }
+
+    /* Skills bars */
+    .skill{ display:flex; align-items:center; justify-content:space-between; gap:12px; }
+    .bar{
+      height:10px; flex:1;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      overflow:hidden;
+    }
+    .bar > span{
+      display:block; height:100%;
+      width:0%;
+      background: linear-gradient(90deg, var(--brand), var(--brand2));
+      border-radius:999px;
+      transition: width .9s ease;
+    }
+
+    /* Portfolio */
+    .toolbar{
+      display:flex; gap:10px; flex-wrap:wrap;
+      align-items:center; justify-content:space-between;
+      margin-bottom:12px;
+    }
+    .search{
+      flex:1;
+      display:flex; gap:10px; align-items:center;
+      padding:10px 12px;
+      border-radius:16px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      min-width:240px;
+    }
+    .search input{
+      border:none; outline:none; background:transparent; color:var(--text);
+      width:100%; font-size:14px;
+    }
+    .filters{ display:flex; gap:10px; flex-wrap:wrap; }
+    .chip{
+      padding:10px 12px; border-radius:999px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      color:var(--muted);
+      cursor:pointer;
+      transition: all .16s ease;
+      user-select:none;
+      font-size:13px;
+      font-weight:700;
+    }
+    .chip:hover{ transform: translateY(-1px); color:var(--text); }
+    .chip.active{
+      color:var(--text);
+      border-color: color-mix(in srgb, var(--brand) 65%, var(--line));
+      background: rgba(122,162,255,.12);
+    }
+
+    /* ✅ Masonry-style layout so box height follows image/video size (NO CROP) */
+    .gallery{
+      column-count: 3;
+      column-gap: 18px;
+      margin-top:14px;
+    }
+    .work{
+      display:inline-block;
+      width:100%;
+      break-inside: avoid;
+      -webkit-column-break-inside: avoid;
+      margin:0 0 18px 0;
+
+      border-radius: var(--radius);
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      overflow:hidden;
+      transition: transform .16s ease, border-color .16s ease, background .16s ease;
+      cursor:pointer;
+    }
+    .work:hover{
+      transform: translateY(-2px);
+      border-color: color-mix(in srgb, var(--brand) 40%, var(--line));
+      background: rgba(255,255,255,.06);
+    }
+
+    .work .media{
+      width:100%;
+      background: rgba(255,255,255,.03);
+      border-bottom:1px solid var(--line);
+      overflow:hidden;
+      position:relative;
+    }
+
+    /* ✅ Image: no fixed height → follows real size */
+    .work .media img{
+      width:100%;
+      height:auto;
+      display:block;
+      object-fit:contain; /* no crop */
+    }
+
+    /* ✅ Video: no poster image; shows first frame; hover preview */
+    .work .media video{
+      width:100%;
+      height:auto;
+      display:block;
+      object-fit:contain;
+      background: rgba(0,0,0,.25);
+    }
+
+    .work .body{ padding:14px; display:grid; gap:10px; }
+    .badge{
+      font-size:12px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      color:var(--muted);
+      background: rgba(255,255,255,.03);
+      display:inline-flex;
+      width:max-content;
+      gap:8px;
+      align-items:center;
+    }
+    .media-tag{
+      position:absolute;
+      right:12px;
+      bottom:12px;
+      background: rgba(0,0,0,.55);
+      border:1px solid rgba(255,255,255,.18);
+      color:#fff;
+      padding:6px 10px;
+      border-radius:999px;
+      font-size:12px;
+      font-weight:700;
+      display:flex;
+      gap:8px;
+      align-items:center;
+      pointer-events:none;
+    }
+
+    /* Timeline */
+    .timeline{ display:grid; gap:12px; }
+    .item{
+      border:1px solid var(--line);
+      border-radius:18px;
+      background: rgba(255,255,255,.04);
+      padding:14px;
+      display:grid;
+      grid-template-columns: 170px 1fr;
+      gap:14px;
+    }
+    .when{ color:var(--muted); font-size:13px; font-weight:700; }
+
+    /* Modal */
+    .modal{
+      position:fixed; inset:0; z-index:1000;
+      background: rgba(0,0,0,.68);
+      display:none; align-items:center; justify-content:center;
+      padding:22px;
+    }
+    .modal.show{ display:flex; }
+    .modal-card{
+      width:min(980px, 100%);
+      border-radius:22px;
+      border:1px solid var(--line);
+      background: color-mix(in srgb, var(--panel) 82%, transparent);
+      backdrop-filter: blur(12px);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .modal-top{
+      display:flex; justify-content:space-between; align-items:center;
+      padding:14px 16px;
+      border-bottom:1px solid var(--line);
+      gap:12px;
+    }
+    .modal-top strong{ font-size:14px; }
+    .modal-media{
+      background: rgba(255,255,255,.03);
+      max-height: 76vh;
+      overflow:auto;
+    }
+    .modal-media img, .modal-media video{
+      width:100%;
+      height:auto;
+      display:block;
+    }
+
+    /* Contact */
+    .form{ display:grid; gap:10px; }
+    .field{ display:grid; gap:6px; }
+    label{ font-size:13px; color:var(--muted); font-weight:700; }
+    input, textarea{
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      color:var(--text);
+      outline:none;
+      font-size:14px;
+    }
+    textarea{ min-height:120px; resize:vertical; }
+    .fine{ font-size:12px; color:var(--muted); }
+
+    footer{
+      padding:34px 0 46px;
+      border-top:1px solid var(--line);
+      color:var(--muted);
+    }
+    .footer-row{ display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; }
+
+    .to-top{
+      position:fixed; right:18px; bottom:18px;
+      opacity:0; transform: translateY(8px);
+      pointer-events:none;
+      transition: opacity .18s ease, transform .18s ease;
+    }
+    .to-top.show{
+      opacity:1; transform: translateY(0);
+      pointer-events:auto;
+    }
+
+    /* ✅ Device-specific UI (Desktop / Tablet / Mobile) */
+    @media (min-width: 1200px){
+      .gallery{ column-count: 4; }
+    }
+    @media (max-width: 980px){
+      .two{ grid-template-columns: 1fr; }
+      .hero-content{ grid-template-columns: 1fr; }
+      .gallery{ column-count: 2; }
+      nav ul{ display:none; }
+      .hamburger{ display:inline-flex; }
+      .mobile-menu{ display:block; }
+      section{ padding:64px 0; }
+    }
+    @media (max-width: 640px){
+      section{ padding:52px 0; }
+      .gallery{ column-count: 1; }
+      .item{ grid-template-columns: 1fr; }
+      .container{ width:min(var(--max), calc(100% - 28px)); }
+    }
+    @media (max-width: 420px){
+      .btn{ padding:10px 12px; }
+      .hero-content{ padding:20px; }
+      h1{ font-size: 34px; }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container">
+      <div class="nav">
+        <a class="brand" href="#top" aria-label="Home">
+          <span class="logo" aria-hidden="true"></span>
+          <span>Shihab Sarar Deepro</span>
+        </a>
+
+        <nav aria-label="Primary">
+          <ul>
+            <li><a href="#about" class="navlink">About</a></li>
+            <li><a href="#skills" class="navlink">Skills</a></li>
+            <li><a href="#portfolio" class="navlink">Portfolio</a></li>
+            <li><a href="#experience" class="navlink">Experience</a></li>
+            <li><a href="#education" class="navlink">Education</a></li>
+            <li><a href="#contact" class="navlink">Contact</a></li>
+          </ul>
+        </nav>
+
+        <div class="nav-actions">
+          <button class="btn hamburger" id="menuBtn" aria-label="Open menu">☰</button>
+          <button class="btn" id="themeBtn" aria-label="Toggle theme">🌓 <span class="muted">Theme</span></button>
+          <a class="btn primary" href="#contact">Hire Me</a>
+        </div>
+      </div>
+
+      <div class="mobile-menu" id="mobileMenu" hidden>
+        <a href="#about" class="navlink">About</a>
+        <a href="#skills" class="navlink">Skills</a>
+        <a href="#portfolio" class="navlink">Portfolio</a>
+        <a href="#experience" class="navlink">Experience</a>
+        <a href="#education" class="navlink">Education</a>
+        <a href="#contact" class="navlink">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container">
+        <div class="card hero-card">
+          <div class="hero-bg" aria-hidden="true"></div>
+
+          <div class="hero-content">
+            <div>
+              <div class="pill">
+                <span>✅</span>
+                <span class="muted">Creative Professional — Digital Marketing • Graphic Design • Video Editing</span>
+              </div>
+
+              <h1>Creative that looks premium — and performs.</h1>
+              <p class="muted">
+                I’m <strong>Shihab Sarar Deepro</strong>, a confident and results-driven creative professional.
+                I work in <strong>digital marketing</strong>, <strong>graphic design</strong>, and <strong>short-form video</strong>,
+                and I use <strong>AI tools + prompt engineering</strong> to speed up workflows and deliver strong brand impact.
+              </p>
+
+              <div class="hero-cta">
+                <a class="btn primary" href="#portfolio">View portfolio</a>
+                <a class="btn" href="mailto:dondeepro0902@gmail.com">Email</a>
+                <a class="btn" href="tel:+8801750042259">Call</a>
+                <a class="btn" href="#contact">Get a quote</a>
+              </div>
+
+              <div class="tag-row" aria-label="Quick info">
+                <span class="tag">📍 7400, Jashore, Bangladesh</span>
+                <span class="tag">📞 +8801750042259</span>
+                <span class="tag">✉️ dondeepro0902@gmail.com</span>
+              </div>
+            </div>
+
+            <aside class="profile">
+              <div class="photo" aria-label="Profile photo">
+                <img src="images/profile.jpg" alt="Shihab Sarar Deepro"
+                  onerror="this.style.display='none'; this.parentElement.style.background='rgba(255,255,255,.05)';" />
+              </div>
+
+              <div class="mini">
+                <strong>What I offer</strong>
+                <div class="muted" style="margin-top:6px;">
+                  Social media creatives, branding, promotional posters, flyers, invoice/ID design, and short-form video scripting & edits.
+                </div>
+              </div>
+
+              <div class="mini">
+                <strong>Working style</strong>
+                <div class="muted" style="margin-top:6px;">
+                  Fast turnaround, clean visuals, and consistent brand identity — powered by smart AI-assisted workflows.
+                </div>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="container">
+        <div class="grid two">
+          <div class="card">
+            <div class="card-inner">
+              <div class="kicker">About</div>
+              <h2>About Me</h2>
+              <p class="muted">
+                I am a confident and results-driven creative professional with proven experience in digital marketing,
+                graphic design, and video editing. I specialize in leveraging AI tools and prompt engineering to optimize
+                creative workflows, generate innovative design concepts, and craft compelling scripts for short-form videos
+                and promotional advertisements.
+              </p>
+              <p class="muted">
+                My focus is quality, innovation, and strategic thinking — delivering measurable impact, strengthening brand
+                identity, and supporting business growth through modern, technology-driven solutions.
+              </p>
+
+              <div class="tag-row" style="margin-top:14px;">
+                <span class="tag">AI Prompt Writing</span>
+                <span class="tag">AI-Assisted Script Writing</span>
+                <span class="tag">Creative Branding</span>
+                <span class="tag">Visual Communication</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-inner">
+              <div class="kicker">Highlights</div>
+              <h2>What makes me different</h2>
+
+              <div class="grid" style="gap:12px; margin-top:12px;">
+                <div class="mini">
+                  <strong>Design + Marketing Together</strong>
+                  <div class="muted" style="margin-top:6px;">I create visuals that match strategy — not just “good looking” designs.</div>
+                </div>
+                <div class="mini">
+                  <strong>AI-Boosted Workflow</strong>
+                  <div class="muted" style="margin-top:6px;">Prompting for faster ideation, better variations, and consistent quality.</div>
+                </div>
+                <div class="mini">
+                  <strong>Short-Form Content Ready</strong>
+                  <div class="muted" style="margin-top:6px;">Creative scripts and edits for ads, reels, and promo videos.</div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills">
+      <div class="container">
+        <div class="card">
+          <div class="card-inner">
+            <div class="kicker">Skills</div>
+            <h2>Core skills</h2>
+            <p class="muted">Based on your CV skills and tools.</p>
+
+            <div class="grid three" style="margin-top:14px;">
+              <div class="card" style="box-shadow:none; background:rgba(255,255,255,.03);">
+                <div class="card-inner">
+                  <h3>Digital Marketing</h3>
+                  <div class="grid" style="gap:12px; margin-top:10px;">
+                    <div class="skill"><span>Social Media Management</span><div class="bar"><span data-pct="90"></span></div></div>
+                    <div class="skill"><span>Content Planning</span><div class="bar"><span data-pct="86"></span></div></div>
+                    <div class="skill"><span>Brand Growth Strategy</span><div class="bar"><span data-pct="82"></span></div></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card" style="box-shadow:none; background:rgba(255,255,255,.03);">
+                <div class="card-inner">
+                  <h3>Graphic Design</h3>
+                  <div class="grid" style="gap:12px; margin-top:10px;">
+                    <div class="skill"><span>Adobe Photoshop</span><div class="bar"><span data-pct="92"></span></div></div>
+                    <div class="skill"><span>Adobe Illustrator</span><div class="bar"><span data-pct="85"></span></div></div>
+                    <div class="skill"><span>Brand Visual Systems</span><div class="bar"><span data-pct="84"></span></div></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card" style="box-shadow:none; background:rgba(255,255,255,.03);">
+                <div class="card-inner">
+                  <h3>Video + AI</h3>
+                  <div class="grid" style="gap:12px; margin-top:10px;">
+                    <div class="skill"><span>Short-Form Video Editing</span><div class="bar"><span data-pct="86"></span></div></div>
+                    <div class="skill"><span>AI Prompt Writing</span><div class="bar"><span data-pct="88"></span></div></div>
+                    <div class="skill"><span>Script Writing for Ads</span><div class="bar"><span data-pct="82"></span></div></div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="tag-row" style="margin-top:14px;">
+              <span class="tag">Adobe Photoshop</span>
+              <span class="tag">Illustrator</span>
+              <span class="tag">Social Media Design</span>
+              <span class="tag">Promotional Ads</span>
+              <span class="tag">AI Tools</span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PORTFOLIO -->
+    <section id="portfolio">
+      <div class="container">
+        <div class="card">
+          <div class="card-inner">
+            <div class="kicker">Portfolio</div>
+
+            <div class="toolbar">
+              <div>
+                <h2 style="margin-bottom:6px;">Design + Video work</h2>
+                <p class="muted" style="margin:0;">Search and filter. Video cards show preview on hover (desktop).</p>
+              </div>
+
+              <div class="search" role="search">
+                <span aria-hidden="true">🔎</span>
+                <input id="searchInput" placeholder="Search: img1, video, flyer, invoice…" />
+              </div>
+            </div>
+
+            <div class="filters" id="filterChips" aria-label="Portfolio filters"></div>
+            <div class="gallery" id="galleryGrid"></div>
+            <p class="fine" id="resultNote" style="margin-top:12px;"></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience">
+      <div class="container">
+        <div class="grid two">
+          <div class="card">
+            <div class="card-inner">
+              <div class="kicker">Experience</div>
+              <h2>Professional experience</h2>
+
+              <div class="timeline" style="margin-top:12px;">
+                <div class="item">
+                  <div>
+                    <div class="when">Dec 2025 — Present</div>
+                    <strong>Digital Marketing Manager & Graphics Designer</strong>
+                    <div class="muted">Savetech Builders</div>
+                  </div>
+                  <div class="muted">
+                    <ul style="margin:0; padding-left:18px;">
+                      <li>Managing digital marketing strategies and online brand presence.</li>
+                      <li>Designing marketing creatives, banners, and promotional materials.</li>
+                      <li>Handling social media platforms and content planning.</li>
+                      <li>Collaborating with management to support business growth.</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="item">
+                  <div>
+                    <div class="when">Jan 2020 — Nov 2021</div>
+                    <strong>Graphic Designer</strong>
+                    <div class="muted">PUBG Mobile Underdog Community</div>
+                  </div>
+                  <div class="muted">
+                    <ul style="margin:0; padding-left:18px;">
+                      <li>Designed graphics for social media posts and digital campaigns.</li>
+                      <li>Edited short promotional videos and creative content.</li>
+                      <li>Maintained visual consistency across platforms.</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-inner">
+              <div class="kicker">Languages</div>
+              <h2>Language proficiency</h2>
+
+              <div class="grid" style="gap:12px; margin-top:12px;">
+                <div class="mini">
+                  <strong>Bangla</strong>
+                  <div class="muted">Fluent</div>
+                </div>
+                <div class="mini">
+                  <strong>English</strong>
+                  <div class="muted">Intermediate</div>
+                </div>
+                <div class="mini">
+                  <strong>Hindi</strong>
+                  <div class="muted">Conversational</div>
+                </div>
+              </div>
+
+              <div class="kicker" style="margin-top:18px;">Future plan</div>
+              <h2 style="margin-top:8px;">Where I’m going</h2>
+              <p class="muted">
+                My goal is to grow as a skilled creative and digital marketing professional by combining graphic design,
+                video editing, and AI-based tools. I want to continuously improve AI-assisted content creation, prompt writing,
+                and short-form video marketing to produce engaging promotional content — and lead creative projects using modern technology.
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section id="education">
+      <div class="container">
+        <div class="card">
+          <div class="card-inner">
+            <div class="kicker">Education</div>
+            <h2>Academic background</h2>
+
+            <div class="timeline" style="margin-top:12px;">
+              <div class="item">
+                <div>
+                  <div class="when">2024</div>
+                  <strong>Diploma in Engineering (Computer Engineering)</strong>
+                  <div class="muted">Jashore Polytechnic Institute</div>
+                </div>
+                <div class="muted">
+                  <strong>CGPA:</strong> 3.28 / 4.00
+                </div>
+              </div>
+
+              <div class="item">
+                <div>
+                  <div class="when">2020</div>
+                  <strong>Secondary School Certificate (Science)</strong>
+                  <div class="muted">Jashore Zilla School</div>
+                </div>
+                <div class="muted">
+                  <strong>GPA:</strong> 4.78 / 5.00
+                </div>
+              </div>
+            </div>
+
+            <p class="fine" style="margin-top:12px;">
+              Want a “Resume” page too? I can convert your CV into a clean printable web-resume section.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="container">
+        <div class="grid two">
+          <div class="card">
+            <div class="card-inner">
+              <div class="kicker">Contact</div>
+              <h2>Let’s work together</h2>
+              <p class="muted">
+                Tell me what you need — design, marketing creatives, or short-form video. I’ll reply with next steps.
+              </p>
+
+              <div class="tag-row" style="margin-top:12px;">
+                <a class="tag" href="mailto:dondeepro0902@gmail.com">dondeepro0902@gmail.com</a>
+                <a class="tag" href="tel:+8801750042259">+8801750042259</a>
+                <span class="tag">📍 7400, Jashore</span>
+              </div>
+
+              <p class="fine" style="margin-top:14px;">
+                This form sends directly via Formspree (no email app needed).
+              </p>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-inner">
+              <!-- ✅ Formspree Connected -->
+              <form class="form" id="contactForm"
+                    action="https://formspree.io/f/mojepoyw"
+                    method="POST"
+                    novalidate>
+
+                <input type="hidden" name="_subject" value="New Portfolio Inquiry (Shihab Sarar Deepro)" />
+                <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
+
+                <div class="field">
+                  <label for="name">Name</label>
+                  <input id="name" name="name" placeholder="Your name" required />
+                </div>
+
+                <div class="field">
+                  <label for="email">Email</label>
+                  <input id="email" name="email" type="email" placeholder="you@gmail.com" required />
+                </div>
+
+                <div class="field">
+                  <label for="message">Message</label>
+                  <textarea id="message" name="message" placeholder="What do you want to design or promote?" required></textarea>
+                </div>
+
+                <button class="btn primary" type="submit" id="sendBtn">Send message</button>
+                <div class="fine" id="formNote" aria-live="polite"></div>
+              </form>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="container">
+        <div class="footer-row">
+          <div>
+            <div class="brand" style="gap:10px;">
+              <span class="logo" aria-hidden="true"></span>
+              <strong>Shihab Sarar Deepro</strong>
+            </div>
+            <p class="muted" style="margin:8px 0 0;">© <span id="year"></span> • Digital Marketing • Graphics • Video</p>
+          </div>
+          <div style="display:flex; gap:10px; flex-wrap:wrap;">
+            <a class="btn" href="mailto:dondeepro0902@gmail.com">Email</a>
+            <a class="btn" href="tel:+8801750042259">Call</a>
+            <a class="btn" href="#top">Back to top</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <div class="to-top" id="toTop">
+      <button class="btn" onclick="window.scrollTo({top:0, behavior:'smooth'})" aria-label="Scroll to top">⬆️</button>
+    </div>
+
+    <!-- Modal (Image + Video) -->
+    <div class="modal" id="modal" aria-hidden="true">
+      <div class="modal-card" role="dialog" aria-modal="true" aria-label="Portfolio preview">
+        <div class="modal-top">
+          <strong id="modalTitle">Preview</strong>
+          <button class="btn" id="modalClose" aria-label="Close preview">✕</button>
+        </div>
+        <div class="modal-media">
+          <img id="modalImg" alt="" />
+          <video id="modalVideo" controls style="display:none;"></video>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <script>
+    const $ = (sel, root=document) => root.querySelector(sel);
+    const $$ = (sel, root=document) => Array.from(root.querySelectorAll(sel));
+
+    // Theme
+    const themeKey = "deepro_theme";
+    const rootEl = document.documentElement;
+    function setTheme(mode){ rootEl.setAttribute("data-theme", mode); localStorage.setItem(themeKey, mode); }
+    function initTheme(){
+      const saved = localStorage.getItem(themeKey);
+      if (saved) return setTheme(saved);
+      const prefersLight = window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches;
+      setTheme(prefersLight ? "light" : "dark");
+    }
+
+    // ✅ Your real files (images + videos)
+    const works = [
+      // Images
+      { title:"Logo Design",  category:"Image", year:"2026", tags:["img1"],  type:"image", file:"images/img1.jpg"  },
+      { title:"Flyer Design",  category:"Image", year:"2026", tags:["img2"],  type:"image", file:"images/img2.jpg"  },
+      { title:"ID Card Design",  category:"Image", year:"2026", tags:["img3"],  type:"image", file:"images/img3.jpg"  },
+      { title:"Bi-Fold Flyer Design",  category:"Image", year:"2026", tags:["img4"],  type:"image", file:"images/img4.jpg"  },
+      { title:"Invoice Design",  category:"Image", year:"2026", tags:["img5"],  type:"image", file:"images/img5.jpg"  },
+      { title:"Roster Design",  category:"Image", year:"2026", tags:["img6"],  type:"image", file:"images/img6.jpg"  },
+      { title:"Reel Cover Design",  category:"Image", year:"2026", tags:["img7"],  type:"image", file:"images/img7.jpg"  },
+      { title:"Reel Cover Design",  category:"Image", year:"2026", tags:["img8"],  type:"image", file:"images/img8.jpg"  },
+      { title:"Thumbnail Design",  category:"Image", year:"2026", tags:["img9"],  type:"image", file:"images/img9.jpg"  },
+      { title:"Jersey Design", category:"Image", year:"2026", tags:["img10"], type:"image", file:"images/img10.jpg" },
+      { title:"Social Media Post Design", category:"Image", year:"2026", tags:["img11"], type:"image", file:"images/img11.jpg" },
+
+      // Videos
+      { title:"Brand Promotional Video", category:"Video", year:"2026", tags:["vid1"], type:"video", file:"videos/vid1.mp4" },
+      { title:"Brand Promotional Video", category:"Video", year:"2026", tags:["vid2"], type:"video", file:"videos/vid2.mp4" },
+      { title:"Advertisement Video", category:"Video", year:"2026", tags:["vid3"], type:"video", file:"videos/vid3.mp4" },
+      { title:"Social Media Post Video", category:"Video", year:"2026", tags:["vid4"], type:"video", file:"videos/vid4.mp4" },
+      { title:"Trailer Video", category:"Video", year:"2026", tags:["vid5"], type:"video", file:"videos/vid5.mp4" },
+      { title:"Gunshot VFX Video", category:"Video", year:"2026", tags:["vid6"], type:"video", file:"videos/vid6.mp4" },
+      { title:"Gaming Velocity Video", category:"Video", year:"2026", tags:["vid7"], type:"video", file:"videos/vid7.mp4" },
+    ];
+
+    function escapeHtml(str){
+      return String(str ?? "")
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
+    }
+
+    function renderChips(categories){
+      const wrap = $("#filterChips");
+      wrap.innerHTML = "";
+      const all = ["All", ...categories];
+      all.forEach((cat, i) => {
+        const chip = document.createElement("button");
+        chip.type = "button";
+        chip.className = "chip" + (i===0 ? " active" : "");
+        chip.textContent = cat;
+        chip.dataset.filter = cat;
+        wrap.appendChild(chip);
+      });
+    }
+
+    function matchesSearch(w, q){
+      if (!q) return true;
+      const hay = [w.title, w.category, w.year, ...(w.tags||[])].join(" ").toLowerCase();
+      return hay.includes(q.toLowerCase());
+    }
+    function matchesFilter(w, filter){
+      if (!filter || filter === "All") return true;
+      return w.category === filter;
+    }
+
+    function attachVideoPreview(card, video){
+      const canHover = window.matchMedia && window.matchMedia("(hover:hover)").matches;
+      const reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (!canHover || reduceMotion) return;
+
+      const safePlay = () => video.play().catch(()=>{});
+      const safeStop = () => {
+        video.pause();
+        try{ video.currentTime = 0; }catch(e){}
+      };
+
+      card.addEventListener("mouseenter", safePlay);
+      card.addEventListener("mouseleave", safeStop);
+    }
+
+    function workCard(w){
+      const el = document.createElement("article");
+      el.className = "work";
+      el.setAttribute("tabindex", "0");
+      el.setAttribute("role", "button");
+      el.setAttribute("aria-label", `Open ${w.title}`);
+
+      const isVideo = w.type === "video";
+      const icon = isVideo ? "🎬" : "🖼️";
+
+      const mediaHtml = isVideo
+        ? `
+          <div class="media">
+            <video class="thumb-video" muted playsinline preload="metadata">
+              <source src="${escapeHtml(w.file)}" type="video/mp4">
+            </video>
+            <div class="media-tag">▶ Preview</div>
+          </div>
+        `
+        : `
+          <div class="media">
+            <img src="${escapeHtml(w.file)}" alt="${escapeHtml(w.title)}" loading="lazy"
+              onerror="this.style.display='none'; this.parentElement.style.background='rgba(255,255,255,.06)';" />
+          </div>
+        `;
+
+      el.innerHTML = `
+        ${mediaHtml}
+        <div class="body">
+          <div style="display:flex; gap:10px; justify-content:space-between; flex-wrap:wrap; align-items:center;">
+            <span class="badge">${icon} ${escapeHtml(w.category)}</span>
+            <span class="badge">🗓️ ${escapeHtml(w.year)}</span>
+          </div>
+          <div>
+            <h3>${escapeHtml(w.title)}</h3>
+            <div class="muted" style="font-size:13px;">${escapeHtml((w.tags||[]).join(" • "))}</div>
+          </div>
+        </div>
+      `;
+
+      const open = () => openModal(w);
+      el.addEventListener("click", open);
+      el.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(); }
+      });
+
+      const v = el.querySelector(".thumb-video");
+      if (v) attachVideoPreview(el, v);
+
+      return el;
+    }
+
+    function renderWorks({filter="All", query=""}={}){
+      const grid = $("#galleryGrid");
+      grid.innerHTML = "";
+
+      const filtered = works
+        .filter(w => matchesFilter(w, filter))
+        .filter(w => matchesSearch(w, query));
+
+      filtered.forEach(w => grid.appendChild(workCard(w)));
+
+      const note = $("#resultNote");
+      note.textContent = filtered.length
+        ? `Showing ${filtered.length} item${filtered.length>1 ? "s" : ""}.`
+        : "No items match your search. Try another keyword or filter.";
+    }
+
+    function initPortfolio(){
+      const categories = Array.from(new Set(works.map(w => w.category))).sort();
+      renderChips(categories);
+      renderWorks();
+
+      $("#filterChips").addEventListener("click", (e) => {
+        const btn = e.target.closest(".chip");
+        if (!btn) return;
+        $$(".chip").forEach(c => c.classList.remove("active"));
+        btn.classList.add("active");
+        renderWorks({ filter: btn.dataset.filter, query: $("#searchInput").value.trim() });
+      });
+
+      $("#searchInput").addEventListener("input", () => {
+        const active = $(".chip.active")?.dataset.filter || "All";
+        renderWorks({ filter: active, query: $("#searchInput").value.trim() });
+      });
+    }
+
+    // Modal
+    function openModal(w){
+      $("#modalTitle").textContent = w.title;
+      const img = $("#modalImg");
+      const vid = $("#modalVideo");
+
+      if (w.type === "video") {
+        img.style.display = "none";
+        img.src = "";
+        vid.style.display = "block";
+        vid.innerHTML = `<source src="${w.file}" type="video/mp4">`;
+        vid.load();
+        vid.play?.().catch(()=>{});
+      } else {
+        vid.pause?.();
+        vid.style.display = "none";
+        vid.innerHTML = "";
+        img.style.display = "block";
+        img.src = w.file;
+        img.alt = w.title;
+      }
+
+      $("#modal").classList.add("show");
+      $("#modal").setAttribute("aria-hidden", "false");
+    }
+
+    function closeModal(){
+      $("#modal").classList.remove("show");
+      $("#modal").setAttribute("aria-hidden", "true");
+
+      const img = $("#modalImg");
+      const vid = $("#modalVideo");
+
+      img.src = "";
+      vid.pause?.();
+      vid.innerHTML = "";
+      vid.style.display = "none";
+      img.style.display = "block";
+    }
+
+    function initModal(){
+      $("#modalClose").addEventListener("click", closeModal);
+      $("#modal").addEventListener("click", (e) => { if (e.target.id === "modal") closeModal(); });
+      window.addEventListener("keydown", (e) => { if (e.key === "Escape") closeModal(); });
+    }
+
+    // Active nav
+    function initActiveNav(){
+      const links = $$(".navlink");
+      const sections = ["about","skills","portfolio","experience","education","contact"]
+        .map(id => document.getElementById(id))
+        .filter(Boolean);
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          const id = entry.target.id;
+          links.forEach(a => a.classList.toggle("active", a.getAttribute("href") === `#${id}`));
+        });
+      }, { rootMargin: "-40% 0px -55% 0px", threshold: 0.01 });
+
+      sections.forEach(s => observer.observe(s));
+    }
+
+    // Skill bars
+    function initSkillBars(){
+      const bars = $$("[data-pct]");
+      const obs = new IntersectionObserver((entries) => {
+        entries.forEach(ent => {
+          if (!ent.isIntersecting) return;
+          ent.target.style.width = ent.target.dataset.pct + "%";
+        });
+      }, { threshold: 0.25 });
+      bars.forEach(b => obs.observe(b));
+    }
+
+    // Mobile menu
+    function initMobileMenu(){
+      const btn = $("#menuBtn");
+      const menu = $("#mobileMenu");
+      btn.addEventListener("click", () => {
+        const isHidden = menu.hasAttribute("hidden");
+        if (isHidden) menu.removeAttribute("hidden");
+        else menu.setAttribute("hidden", "");
+      });
+      menu.addEventListener("click", (e) => { if (e.target.matches("a")) menu.setAttribute("hidden",""); });
+    }
+
+    // ✅ Contact form (Formspree AJAX)
+    function initContactForm(){
+      const form = $("#contactForm");
+      const note = $("#formNote");
+      const btn = $("#sendBtn");
+      if (!form) return;
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        if (!form.checkValidity()) {
+          note.textContent = "Please fill all fields correctly.";
+          return;
+        }
+
+        const originalText = btn.textContent;
+        btn.disabled = true;
+        btn.textContent = "Sending…";
+        note.textContent = "Sending your message…";
+
+        try {
+          const data = new FormData(form);
+          data.set("_replyto", $("#email").value.trim());
+
+          const res = await fetch(form.action, {
+            method: "POST",
+            body: data,
+            headers: { "Accept": "application/json" }
+          });
+
+          if (res.ok) {
+            form.reset();
+            note.textContent = "✅ Message sent! I will reply soon.";
+          } else {
+            let msg = "Something went wrong. Please try again.";
+            try {
+              const json = await res.json();
+              if (json && json.errors && json.errors.length) {
+                msg = json.errors.map(e => e.message).join(" ");
+              }
+            } catch {}
+            note.textContent = "❌ " + msg;
+          }
+        } catch {
+          note.textContent = "❌ Network error. Please check internet and try again.";
+        } finally {
+          btn.disabled = false;
+          btn.textContent = originalText;
+        }
+      });
+    }
+
+    // Scroll to top
+    function initToTop(){
+      const el = $("#toTop");
+      window.addEventListener("scroll", () => {
+        el.classList.toggle("show", window.scrollY > 600);
+      }, { passive:true });
+    }
+
+    // Init
+    initTheme();
+    $("#year").textContent = new Date().getFullYear();
+    $("#themeBtn").addEventListener("click", () => {
+      const current = rootEl.getAttribute("data-theme") || "dark";
+      setTheme(current === "dark" ? "light" : "dark");
+    });
+
+    initPortfolio();
+    initModal();
+    initActiveNav();
+    initSkillBars();
+    initMobileMenu();
+    initContactForm();
+    initToTop();
+  </script>
+</body>
+</html>
