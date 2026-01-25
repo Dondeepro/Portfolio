@@ -241,33 +241,76 @@
     .mini strong{ display:block; }
     .mini .muted{ font-size:13px; }
 
-    /* ✅ Skills rows: prevent text cutting on small screens */
+    /* =========================================================
+       ✅ Core Skills: 9/10 style bar system
+       - data-level="9" মানে 9/10
+       - 10টা ছোট tick দেখাবে, যতগুলো পূর্ণ হবে ততগুলো fill হবে
+       ========================================================= */
     .skill{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:10px;
+      padding:12px 12px;
+      border-radius:16px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.035);
+    }
+    .skill-top{
       display:flex;
-      align-items:center;
       justify-content:space-between;
+      align-items:flex-start;
       gap:12px;
-      flex-wrap:wrap;          /* allow wrap */
+      flex-wrap:wrap;
     }
-    .skill > span{
-      flex: 1 1 180px;         /* label can wrap */
-      min-width: 0;
+    .skill-name{
+      font-weight:800;
+      color:var(--text);
+      min-width:0;
+      overflow-wrap:anywhere;
     }
-    .bar{
+    .skill-score{
+      font-size:13px;
+      font-weight:900;
+      color: color-mix(in srgb, var(--brand) 70%, var(--muted));
+      white-space:nowrap;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      padding:6px 10px;
+      border-radius:999px;
+    }
+
+    /* 10-segment bar */
+    .segbar{
+      display:grid;
+      grid-template-columns: repeat(10, 1fr);
+      gap:6px;
+      align-items:center;
+    }
+    .seg{
       height:10px;
-      flex: 1 1 180px;         /* bar also wraps nicely */
-      min-width: 140px;
       border-radius:999px;
       border:1px solid var(--line);
       background: rgba(255,255,255,.04);
       overflow:hidden;
+      position:relative;
     }
-    .bar > span{
-      display:block; height:100%;
-      width:0%;
+    .seg::after{
+      content:"";
+      position:absolute; inset:0;
       background: linear-gradient(90deg, var(--brand), var(--brand2));
-      border-radius:999px;
-      transition: width .9s ease;
+      transform: scaleX(0);
+      transform-origin:left center;
+      transition: transform .7s ease;
+    }
+    .seg.filled::after{ transform: scaleX(1); }
+
+    /* subtle shine */
+    .seg::before{
+      content:"";
+      position:absolute; inset:-30% -40%;
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.25), transparent 55%);
+      opacity:.35;
+      pointer-events:none;
     }
 
     /* Portfolio */
@@ -472,7 +515,6 @@
       .gallery{ column-count: 4; }
     }
 
-    /* ✅ Tablet: 2 columns for .three */
     @media (max-width: 980px){
       .two{ grid-template-columns: 1fr; }
       .hero-content{ grid-template-columns: 1fr; }
@@ -481,19 +523,19 @@
       .hamburger{ display:inline-flex; }
       section{ padding:64px 0; }
 
-      .three{ grid-template-columns: repeat(2, 1fr); } /* ✅ Skills grid won't cut */
+      .three{ grid-template-columns: repeat(2, 1fr); }
     }
 
-    /* ✅ Mobile: 1 column for .three (fix skills cutting) */
     @media (max-width: 640px){
       section{ padding:52px 0; }
       .gallery{ column-count: 1; }
       .item{ grid-template-columns: 1fr; }
       .container{ width:min(var(--max), calc(100% - 28px)); }
 
-      .three{ grid-template-columns: 1fr; } /* ✅ main fix for Core skills */
-      .skill{ flex-direction:column; align-items:stretch; } /* ✅ label + bar stacked */
-      .bar{ width:100%; min-width:0; }
+      .three{ grid-template-columns: 1fr; }
+      .segbar{ gap:5px; }
+      .seg{ height:10px; }
+      .skill{ padding:12px; }
     }
 
     @media (max-width: 420px){
@@ -665,14 +707,35 @@
             <h2>Core skills</h2>
             <p class="muted">Based on your CV skills and tools.</p>
 
+            <!-- ✅ 9/10 bar system applied here -->
             <div class="grid three" style="margin-top:14px;">
               <div class="card" style="box-shadow:none; background:rgba(255,255,255,.03);">
                 <div class="card-inner">
                   <h3>Digital Marketing</h3>
                   <div class="grid" style="gap:12px; margin-top:10px;">
-                    <div class="skill"><span>Social Media Management</span><div class="bar"><span data-pct="90"></span></div></div>
-                    <div class="skill"><span>Content Planning</span><div class="bar"><span data-pct="86"></span></div></div>
-                    <div class="skill"><span>Brand Growth Strategy</span><div class="bar"><span data-pct="82"></span></div></div>
+                    <div class="skill" data-level="9">
+                      <div class="skill-top">
+                        <span class="skill-name">Social Media Management</span>
+                        <span class="skill-score">9 / 10</span>
+                      </div>
+                      <div class="segbar" aria-hidden="true"></div>
+                    </div>
+
+                    <div class="skill" data-level="9">
+                      <div class="skill-top">
+                        <span class="skill-name">Content Planning</span>
+                        <span class="skill-score">9 / 10</span>
+                      </div>
+                      <div class="segbar" aria-hidden="true"></div>
+                    </div>
+
+                    <div class="skill" data-level="8">
+                      <div class="skill-top">
+                        <span class="skill-name">Brand Growth Strategy</span>
+                        <span class="skill-score">8 / 10</span>
+                      </div>
+                      <div class="segbar" aria-hidden="true"></div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -681,9 +744,29 @@
                 <div class="card-inner">
                   <h3>Graphic Design</h3>
                   <div class="grid" style="gap:12px; margin-top:10px;">
-                    <div class="skill"><span>Adobe Photoshop</span><div class="bar"><span data-pct="92"></span></div></div>
-                    <div class="skill"><span>Adobe Illustrator</span><div class="bar"><span data-pct="85"></span></div></div>
-                    <div class="skill"><span>Brand Visual Systems</span><div class="bar"><span data-pct="84"></span></div></div>
+                    <div class="skill" data-level="9">
+                      <div class="skill-top">
+                        <span class="skill-name">Adobe Photoshop</span>
+                        <span class="skill-score">9 / 10</span>
+                      </div>
+                      <div class="segbar" aria-hidden="true"></div>
+                    </div>
+
+                    <div class="skill" data-level="8">
+                      <div class="skill-top">
+                        <span class="skill-name">Adobe Illustrator</span>
+                        <span class="skill-score">8 / 10</span>
+                      </div>
+                      <div class="segbar" aria-hidden="true"></div>
+                    </div>
+
+                    <div class="skill" data-level="8">
+                      <div class="skill-top">
+                        <span class="skill-name">Brand Visual Systems</span>
+                        <span class="skill-score">8 / 10</span>
+                      </div>
+                      <div class="segbar" aria-hidden="true"></div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -692,9 +775,29 @@
                 <div class="card-inner">
                   <h3>Video + AI</h3>
                   <div class="grid" style="gap:12px; margin-top:10px;">
-                    <div class="skill"><span>Short-Form Video Editing</span><div class="bar"><span data-pct="86"></span></div></div>
-                    <div class="skill"><span>AI Prompt Writing</span><div class="bar"><span data-pct="88"></span></div></div>
-                    <div class="skill"><span>Script Writing for Ads</span><div class="bar"><span data-pct="82"></span></div></div>
+                    <div class="skill" data-level="8">
+                      <div class="skill-top">
+                        <span class="skill-name">Short-Form Video Editing</span>
+                        <span class="skill-score">8 / 10</span>
+                      </div>
+                      <div class="segbar" aria-hidden="true"></div>
+                    </div>
+
+                    <div class="skill" data-level="9">
+                      <div class="skill-top">
+                        <span class="skill-name">AI Prompt Writing</span>
+                        <span class="skill-score">9 / 10</span>
+                      </div>
+                      <div class="segbar" aria-hidden="true"></div>
+                    </div>
+
+                    <div class="skill" data-level="8">
+                      <div class="skill-top">
+                        <span class="skill-name">Script Writing for Ads</span>
+                        <span class="skill-score">8 / 10</span>
+                      </div>
+                      <div class="segbar" aria-hidden="true"></div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -797,7 +900,7 @@
                 </div>
                 <div class="mini">
                   <strong>English</strong>
-                  <div class="muted">Intermediate</div>
+                  <div class="muted">Fluent</div>
                 </div>
                 <div class="mini">
                   <strong>Hindi</strong>
@@ -851,9 +954,7 @@
               </div>
             </div>
 
-            <p class="fine" style="margin-top:12px;">
-              Want a “Resume” page too? I can convert your CV into a clean printable web-resume section.
-            </p>
+            
           </div>
         </div>
       </div>
@@ -877,9 +978,7 @@
                 <span class="tag">📍 7400, Jashore</span>
               </div>
 
-              <p class="fine" style="margin-top:14px;">
-                This form sends directly via Formspree (no email app needed).
-              </p>
+              
             </div>
           </div>
 
@@ -1189,15 +1288,36 @@
       sections.forEach(s => observer.observe(s));
     }
 
-    function initSkillBars(){
-      const bars = $$("[data-pct]");
-      const obs = new IntersectionObserver((entries) => {
-        entries.forEach(ent => {
-          if (!ent.isIntersecting) return;
-          ent.target.style.width = ent.target.dataset.pct + "%";
-        });
-      }, { threshold: 0.25 });
-      bars.forEach(b => obs.observe(b));
+    /* ✅ Build 10 segments + fill by data-level (1-10) */
+    function initSkillSegments(){
+      const skills = $$(".skill[data-level]");
+      skills.forEach(card => {
+        const level = Math.max(0, Math.min(10, parseInt(card.dataset.level || "0", 10)));
+        const segbar = card.querySelector(".segbar");
+        if (!segbar) return;
+
+        segbar.innerHTML = "";
+        for (let i = 1; i <= 10; i++){
+          const seg = document.createElement("span");
+          seg.className = "seg";
+          segbar.appendChild(seg);
+        }
+
+        const segs = Array.from(segbar.querySelectorAll(".seg"));
+
+        // animate when visible
+        const obs = new IntersectionObserver((entries) => {
+          entries.forEach(ent => {
+            if (!ent.isIntersecting) return;
+            segs.forEach((s, idx) => {
+              if (idx < level) s.classList.add("filled");
+            });
+            obs.unobserve(ent.target);
+          });
+        }, { threshold: 0.25 });
+
+        obs.observe(card);
+      });
     }
 
     function initMobileMenu(){
@@ -1295,6 +1415,7 @@
       }, { passive:true });
     }
 
+    // Init
     initTheme();
     $("#year").textContent = new Date().getFullYear();
     $("#themeBtn").addEventListener("click", () => {
@@ -1305,7 +1426,7 @@
     initPortfolio();
     initModal();
     initActiveNav();
-    initSkillBars();
+    initSkillSegments();   // ✅ new 9/10 system
     initMobileMenu();
     initContactForm();
     initToTop();
