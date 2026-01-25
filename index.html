@@ -5,9 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Shihab Sarar Deepro — Creative Professional (Digital Marketing | Graphics Design)" />
   <title>Shihab Sarar Deepro — Portfolio</title>
-  <title>Shihab Sarar Deepro — Portfolio</title>
+
+  <!-- ✅ Favicon -->
   <link rel="icon" type="image/png" href="images/favicon.png">
-<link rel="apple-touch-icon" href="images/favicon.png">
+  <link rel="apple-touch-icon" href="images/favicon.png">
 
   <style>
     :root{
@@ -23,6 +24,9 @@
       --radius: 18px;
       --radius2: 26px;
       --max: 1120px;
+
+      /* ✅ Sticky header height variable (for mobile overlay fix) */
+      --header-h: 72px;
     }
     [data-theme="light"]{
       --bg:#f6f8ff;
@@ -37,7 +41,12 @@
     }
 
     *{ box-sizing:border-box; }
-    html{ scroll-behavior:smooth; }
+    html{
+      scroll-behavior:smooth;
+
+      /* ✅ Fix: anchor links (#about etc.) stop below sticky header */
+      scroll-padding-top: calc(var(--header-h) + 12px);
+    }
     body{
       margin:0;
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
@@ -50,6 +59,12 @@
     }
     a{ color:inherit; text-decoration:none; }
     .container{ width:min(var(--max), calc(100% - 40px)); margin:0 auto; }
+
+    /* ✅ Also ensures every section respects sticky header */
+    section{ 
+      padding:72px 0; 
+      scroll-margin-top: calc(var(--header-h) + 12px);
+    }
 
     header{
       position:sticky; top:0; z-index:60;
@@ -122,7 +137,6 @@
     }
     .mobile-menu a.active{ color:var(--text); background: rgba(122,162,255,.12); border-color: color-mix(in srgb, var(--brand) 55%, var(--line)); }
 
-    section{ padding:72px 0; }
     .grid{ display:grid; gap:18px; }
     .two{ grid-template-columns: 1.15fr .85fr; }
     .three{ grid-template-columns: repeat(3, 1fr); }
@@ -438,6 +452,9 @@
       .gallery{ column-count: 4; }
     }
     @media (max-width: 980px){
+      /* ✅ Sticky header mobile height fix */
+      :root{ --header-h: 86px; }
+
       .two{ grid-template-columns: 1fr; }
       .hero-content{ grid-template-columns: 1fr; }
       .gallery{ column-count: 2; }
@@ -447,12 +464,16 @@
       section{ padding:64px 0; }
     }
     @media (max-width: 640px){
+      :root{ --header-h: 92px; }
+
       section{ padding:52px 0; }
       .gallery{ column-count: 1; }
       .item{ grid-template-columns: 1fr; }
       .container{ width:min(var(--max), calc(100% - 28px)); }
     }
     @media (max-width: 420px){
+      :root{ --header-h: 96px; }
+
       .btn{ padding:10px 12px; }
       .hero-content{ padding:20px; }
       h1{ font-size: 34px; }
@@ -1256,4 +1277,3 @@
   </script>
 </body>
 </html>
-
