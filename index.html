@@ -52,13 +52,16 @@
     a{ color:inherit; text-decoration:none; }
     .container{ width:min(var(--max), calc(100% - 40px)); margin:0 auto; }
 
+    /* ✅ Prevent grid items from overflowing on mobile */
+    .grid > *{ min-width:0; }
+    .card-inner *{ overflow-wrap:anywhere; word-break:break-word; hyphens:auto; }
+
     header{
       position:sticky; top:0; z-index:60;
       border-bottom:1px solid var(--line);
       background: color-mix(in srgb, var(--bg) 78%, transparent);
       backdrop-filter: blur(14px);
     }
-    /* ✅ Needed for dropdown positioning */
     header .container{ position:relative; }
 
     .nav{
@@ -71,7 +74,6 @@
       font-weight:800; letter-spacing:.2px;
     }
 
-    /* ✅ Navbar logo box: small profile pic */
     .logo{
       width:34px; height:34px; border-radius:12px;
       border:1px solid var(--line);
@@ -117,7 +119,7 @@
 
     .hamburger{ display:none; }
 
-    /* ✅ Mobile menu (dropdown under header) - FIXED for iOS/Safari */
+    /* ✅ Mobile menu dropdown */
     .mobile-menu{
       position:absolute;
       left:0;
@@ -129,14 +131,10 @@
       background: color-mix(in srgb, var(--bg) 86%, transparent);
       backdrop-filter: blur(14px);
 
-      /* IMPORTANT: default hidden */
       display:none;
       z-index:999;
     }
-    /* ✅ Force hidden to work on iOS Safari */
-    .mobile-menu[hidden]{
-      display:none !important;
-    }
+    .mobile-menu[hidden]{ display:none !important; }
     .mobile-menu a{
       display:block; padding:12px 10px; border-radius:14px;
       border:1px solid var(--line);
@@ -145,11 +143,7 @@
       color:var(--muted);
     }
     .mobile-menu a.active{ color:var(--text); background: rgba(122,162,255,.12); border-color: color-mix(in srgb, var(--brand) 55%, var(--line)); }
-
-    /* ✅ shown only when JS adds .open */
-    .mobile-menu.open{
-      display:block;
-    }
+    .mobile-menu.open{ display:block; }
 
     section{ padding:72px 0; }
     .grid{ display:grid; gap:18px; }
@@ -211,6 +205,7 @@
       background: rgba(255,255,255,.04);
       color:var(--muted);
       font-size:13px;
+      max-width:100%;
     }
 
     .profile{
@@ -221,6 +216,7 @@
       display:flex;
       flex-direction:column;
       gap:14px;
+      min-width:0;
     }
     .profile .photo{
       width:100%;
@@ -240,14 +236,27 @@
       border-radius:18px;
       background: rgba(255,255,255,.04);
       padding:14px;
+      min-width:0;
     }
     .mini strong{ display:block; }
     .mini .muted{ font-size:13px; }
 
-    /* Skills bars */
-    .skill{ display:flex; align-items:center; justify-content:space-between; gap:12px; }
+    /* ✅ Skills rows: prevent text cutting on small screens */
+    .skill{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;          /* allow wrap */
+    }
+    .skill > span{
+      flex: 1 1 180px;         /* label can wrap */
+      min-width: 0;
+    }
     .bar{
-      height:10px; flex:1;
+      height:10px;
+      flex: 1 1 180px;         /* bar also wraps nicely */
+      min-width: 140px;
       border-radius:999px;
       border:1px solid var(--line);
       background: rgba(255,255,255,.04);
@@ -279,6 +288,7 @@
     .search input{
       border:none; outline:none; background:transparent; color:var(--text);
       width:100%; font-size:14px;
+      min-width:0;
     }
     .filters{ display:flex; gap:10px; flex-wrap:wrap; }
     .chip{
@@ -299,7 +309,6 @@
       background: rgba(122,162,255,.12);
     }
 
-    /* ✅ Masonry-style layout so box height follows image/video size (NO CROP) */
     .gallery{
       column-count: 3;
       column-gap: 18px;
@@ -324,7 +333,6 @@
       border-color: color-mix(in srgb, var(--brand) 40%, var(--line));
       background: rgba(255,255,255,.06);
     }
-
     .work .media{
       width:100%;
       background: rgba(255,255,255,.03);
@@ -332,16 +340,12 @@
       overflow:hidden;
       position:relative;
     }
-
-    /* ✅ Image: no fixed height → follows real size */
     .work .media img{
       width:100%;
       height:auto;
       display:block;
-      object-fit:contain; /* no crop */
+      object-fit:contain;
     }
-
-    /* ✅ Video: no poster image; shows first frame; hover preview */
     .work .media video{
       width:100%;
       height:auto;
@@ -349,7 +353,6 @@
       object-fit:contain;
       background: rgba(0,0,0,.25);
     }
-
     .work .body{ padding:14px; display:grid; gap:10px; }
     .badge{
       font-size:12px;
@@ -390,6 +393,7 @@
       display:grid;
       grid-template-columns: 170px 1fr;
       gap:14px;
+      min-width:0;
     }
     .when{ color:var(--muted); font-size:13px; font-weight:700; }
 
@@ -440,6 +444,7 @@
       color:var(--text);
       outline:none;
       font-size:14px;
+      min-width:0;
     }
     textarea{ min-height:120px; resize:vertical; }
     .fine{ font-size:12px; color:var(--muted); }
@@ -466,6 +471,8 @@
     @media (min-width: 1200px){
       .gallery{ column-count: 4; }
     }
+
+    /* ✅ Tablet: 2 columns for .three */
     @media (max-width: 980px){
       .two{ grid-template-columns: 1fr; }
       .hero-content{ grid-template-columns: 1fr; }
@@ -473,13 +480,22 @@
       nav ul{ display:none; }
       .hamburger{ display:inline-flex; }
       section{ padding:64px 0; }
+
+      .three{ grid-template-columns: repeat(2, 1fr); } /* ✅ Skills grid won't cut */
     }
+
+    /* ✅ Mobile: 1 column for .three (fix skills cutting) */
     @media (max-width: 640px){
       section{ padding:52px 0; }
       .gallery{ column-count: 1; }
       .item{ grid-template-columns: 1fr; }
       .container{ width:min(var(--max), calc(100% - 28px)); }
+
+      .three{ grid-template-columns: 1fr; } /* ✅ main fix for Core skills */
+      .skill{ flex-direction:column; align-items:stretch; } /* ✅ label + bar stacked */
+      .bar{ width:100%; min-width:0; }
     }
+
     @media (max-width: 420px){
       .btn{ padding:10px 12px; }
       .hero-content{ padding:20px; }
@@ -515,7 +531,6 @@
         </div>
       </div>
 
-      <!-- ✅ Mobile dropdown menu (hidden by default) -->
       <div class="mobile-menu" id="mobileMenu" hidden>
         <a href="#about" class="navlink">About</a>
         <a href="#skills" class="navlink">Skills</a>
@@ -683,7 +698,6 @@
                   </div>
                 </div>
               </div>
-
             </div>
 
             <div class="tag-row" style="margin-top:14px;">
@@ -871,7 +885,6 @@
 
           <div class="card">
             <div class="card-inner">
-              <!-- ✅ Formspree Connected -->
               <form class="form" id="contactForm"
                     action="https://formspree.io/f/mojepoyw"
                     method="POST"
@@ -928,7 +941,6 @@
       <button class="btn" onclick="window.scrollTo({top:0, behavior:'smooth'})" aria-label="Scroll to top">⬆️</button>
     </div>
 
-    <!-- Modal (Image + Video) -->
     <div class="modal" id="modal" aria-hidden="true">
       <div class="modal-card" role="dialog" aria-modal="true" aria-label="Portfolio preview">
         <div class="modal-top">
@@ -941,7 +953,6 @@
         </div>
       </div>
     </div>
-
   </main>
 
   <script>
@@ -959,9 +970,7 @@
       setTheme(prefersLight ? "light" : "dark");
     }
 
-    // ✅ Your real files (images + videos)
     const works = [
-      // Images
       { title:"Logo Design",  category:"Image", year:"2026", tags:["img1"],  type:"image", file:"images/img1.jpg"  },
       { title:"Flyer Design",  category:"Image", year:"2026", tags:["img2"],  type:"image", file:"images/img2.jpg"  },
       { title:"ID Card Design",  category:"Image", year:"2026", tags:["img3"],  type:"image", file:"images/img3.jpg"  },
@@ -974,7 +983,6 @@
       { title:"Jersey Design", category:"Image", year:"2026", tags:["img10"], type:"image", file:"images/img10.jpg" },
       { title:"Social Media Post Design", category:"Image", year:"2026", tags:["img11"], type:"image", file:"images/img11.jpg" },
 
-      // Videos
       { title:"Brand Promotional Video", category:"Video", year:"2026", tags:["vid1"], type:"video", file:"videos/vid1.mp4" },
       { title:"Brand Promotional Video", category:"Video", year:"2026", tags:["vid2"], type:"video", file:"videos/vid2.mp4" },
       { title:"Advertisement Video", category:"Video", year:"2026", tags:["vid3"], type:"video", file:"videos/vid3.mp4" },
@@ -1119,7 +1127,6 @@
       });
     }
 
-    // Modal
     function openModal(w){
       $("#modalTitle").textContent = w.title;
       const img = $("#modalImg");
@@ -1165,7 +1172,6 @@
       window.addEventListener("keydown", (e) => { if (e.key === "Escape") closeModal(); });
     }
 
-    // Active nav
     function initActiveNav(){
       const links = $$(".navlink");
       const sections = ["about","skills","portfolio","experience","education","contact"]
@@ -1183,7 +1189,6 @@
       sections.forEach(s => observer.observe(s));
     }
 
-    // Skill bars
     function initSkillBars(){
       const bars = $$("[data-pct]");
       const obs = new IntersectionObserver((entries) => {
@@ -1195,7 +1200,6 @@
       bars.forEach(b => obs.observe(b));
     }
 
-    // ✅ Mobile menu - FIXED (won't stick on screen)
     function initMobileMenu(){
       const btn = $("#menuBtn");
       const menu = $("#mobileMenu");
@@ -1220,23 +1224,19 @@
         else openMenu();
       });
 
-      // close on link click
       menu.addEventListener("click", (e) => {
         if (e.target.matches("a")) closeMenu();
       });
 
-      // close on outside click
       document.addEventListener("click", (e) => {
         if (!menu.contains(e.target) && e.target !== btn) closeMenu();
       });
 
-      // close on scroll (better UX)
       window.addEventListener("scroll", () => {
         if (menu.classList.contains("open")) closeMenu();
       }, { passive:true });
     }
 
-    // ✅ Contact form (Formspree AJAX)
     function initContactForm(){
       const form = $("#contactForm");
       const note = $("#formNote");
@@ -1288,7 +1288,6 @@
       });
     }
 
-    // Scroll to top
     function initToTop(){
       const el = $("#toTop");
       window.addEventListener("scroll", () => {
@@ -1296,7 +1295,6 @@
       }, { passive:true });
     }
 
-    // Init
     initTheme();
     $("#year").textContent = new Date().getFullYear();
     $("#themeBtn").addEventListener("click", () => {
