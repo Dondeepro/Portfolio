@@ -243,8 +243,6 @@
 
     /* =========================================================
        ✅ Core Skills: 9/10 style bar system
-       - data-level="9" মানে 9/10
-       - 10টা ছোট tick দেখাবে, যতগুলো পূর্ণ হবে ততগুলো fill হবে
        ========================================================= */
     .skill{
       display:grid;
@@ -278,8 +276,6 @@
       padding:6px 10px;
       border-radius:999px;
     }
-
-    /* 10-segment bar */
     .segbar{
       display:grid;
       grid-template-columns: repeat(10, 1fr);
@@ -303,8 +299,6 @@
       transition: transform .7s ease;
     }
     .seg.filled::after{ transform: scaleX(1); }
-
-    /* subtle shine */
     .seg::before{
       content:"";
       position:absolute; inset:-30% -40%;
@@ -514,7 +508,6 @@
     @media (min-width: 1200px){
       .gallery{ column-count: 4; }
     }
-
     @media (max-width: 980px){
       .two{ grid-template-columns: 1fr; }
       .hero-content{ grid-template-columns: 1fr; }
@@ -522,10 +515,8 @@
       nav ul{ display:none; }
       .hamburger{ display:inline-flex; }
       section{ padding:64px 0; }
-
       .three{ grid-template-columns: repeat(2, 1fr); }
     }
-
     @media (max-width: 640px){
       section{ padding:52px 0; }
       .gallery{ column-count: 1; }
@@ -537,7 +528,6 @@
       .seg{ height:10px; }
       .skill{ padding:12px; }
     }
-
     @media (max-width: 420px){
       .btn{ padding:10px 12px; }
       .hero-content{ padding:20px; }
@@ -607,7 +597,7 @@
 
               <div class="hero-cta">
                 <a class="btn primary" href="#portfolio">View portfolio</a>
-                <a class="btn" href="mailto:dondeepro0902@gmail.com">Email</a>
+                <a class="btn" href="mailto:shihabsarar0929@gmail.com">Email</a>
                 <a class="btn" href="tel:+8801750042259">Call</a>
                 <a class="btn" href="#contact">Get a quote</a>
               </div>
@@ -615,7 +605,7 @@
               <div class="tag-row" aria-label="Quick info">
                 <span class="tag">📍 7400, Jashore, Bangladesh</span>
                 <span class="tag">📞 +8801750042259</span>
-                <span class="tag">✉️ dondeepro0902@gmail.com</span>
+                <span class="tag">✉️ shihabsarar0929@gmail.com</span>
               </div>
             </div>
 
@@ -705,9 +695,8 @@
           <div class="card-inner">
             <div class="kicker">Skills</div>
             <h2>Core skills</h2>
-            <p class="muted">Based on your CV skills and tools.</p>
+            
 
-            <!-- ✅ 9/10 bar system applied here -->
             <div class="grid three" style="margin-top:14px;">
               <div class="card" style="box-shadow:none; background:rgba(255,255,255,.03);">
                 <div class="card-inner">
@@ -954,7 +943,6 @@
               </div>
             </div>
 
-            
           </div>
         </div>
       </div>
@@ -973,12 +961,11 @@
               </p>
 
               <div class="tag-row" style="margin-top:12px;">
-                <a class="tag" href="mailto:dondeepro0902@gmail.com">dondeepro0902@gmail.com</a>
+                <a class="tag" href="mailto:shihabsarar0929@gmail.com">shihabsarar0929@gmail.com</a>
                 <a class="tag" href="tel:+8801750042259">+8801750042259</a>
                 <span class="tag">📍 7400, Jashore</span>
               </div>
 
-              
             </div>
           </div>
 
@@ -1028,7 +1015,7 @@
             <p class="muted" style="margin:8px 0 0;">© <span id="year"></span> • Digital Marketing • Graphics • Video</p>
           </div>
           <div style="display:flex; gap:10px; flex-wrap:wrap;">
-            <a class="btn" href="mailto:dondeepro0902@gmail.com">Email</a>
+            <a class="btn" href="mailto:shihabsarar0929@gmail.com">Email</a>
             <a class="btn" href="tel:+8801750042259">Call</a>
             <a class="btn" href="#top">Back to top</a>
           </div>
@@ -1058,7 +1045,6 @@
     const $ = (sel, root=document) => root.querySelector(sel);
     const $$ = (sel, root=document) => Array.from(root.querySelectorAll(sel));
 
-    // Theme
     const themeKey = "deepro_theme";
     const rootEl = document.documentElement;
     function setTheme(mode){ rootEl.setAttribute("data-theme", mode); localStorage.setItem(themeKey, mode); }
@@ -1288,7 +1274,6 @@
       sections.forEach(s => observer.observe(s));
     }
 
-    /* ✅ Build 10 segments + fill by data-level (1-10) */
     function initSkillSegments(){
       const skills = $$(".skill[data-level]");
       skills.forEach(card => {
@@ -1305,7 +1290,6 @@
 
         const segs = Array.from(segbar.querySelectorAll(".seg"));
 
-        // animate when visible
         const obs = new IntersectionObserver((entries) => {
           entries.forEach(ent => {
             if (!ent.isIntersecting) return;
@@ -1426,7 +1410,7 @@
     initPortfolio();
     initModal();
     initActiveNav();
-    initSkillSegments();   // ✅ new 9/10 system
+    initSkillSegments();
     initMobileMenu();
     initContactForm();
     initToTop();
