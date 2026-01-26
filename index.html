@@ -276,6 +276,7 @@
       padding:6px 10px;
       border-radius:999px;
     }
+
     .segbar{
       display:grid;
       grid-template-columns: repeat(10, 1fr);
@@ -508,6 +509,7 @@
     @media (min-width: 1200px){
       .gallery{ column-count: 4; }
     }
+
     @media (max-width: 980px){
       .two{ grid-template-columns: 1fr; }
       .hero-content{ grid-template-columns: 1fr; }
@@ -515,8 +517,10 @@
       nav ul{ display:none; }
       .hamburger{ display:inline-flex; }
       section{ padding:64px 0; }
+
       .three{ grid-template-columns: repeat(2, 1fr); }
     }
+
     @media (max-width: 640px){
       section{ padding:52px 0; }
       .gallery{ column-count: 1; }
@@ -528,6 +532,7 @@
       .seg{ height:10px; }
       .skill{ padding:12px; }
     }
+
     @media (max-width: 420px){
       .btn{ padding:10px 12px; }
       .hero-content{ padding:20px; }
@@ -695,7 +700,7 @@
           <div class="card-inner">
             <div class="kicker">Skills</div>
             <h2>Core skills</h2>
-            
+            <p class="muted">Based on your CV skills and tools.</p>
 
             <div class="grid three" style="margin-top:14px;">
               <div class="card" style="box-shadow:none; background:rgba(255,255,255,.03);">
@@ -820,7 +825,7 @@
 
               <div class="search" role="search">
                 <span aria-hidden="true">🔎</span>
-                <input id="searchInput" placeholder="Search: img1, video, flyer, invoice…" />
+                <input id="searchInput" placeholder="Search: logo, video, flyer, invoice…" />
               </div>
             </div>
 
@@ -1045,6 +1050,7 @@
     const $ = (sel, root=document) => root.querySelector(sel);
     const $$ = (sel, root=document) => Array.from(root.querySelectorAll(sel));
 
+    // Theme
     const themeKey = "deepro_theme";
     const rootEl = document.documentElement;
     function setTheme(mode){ rootEl.setAttribute("data-theme", mode); localStorage.setItem(themeKey, mode); }
@@ -1055,6 +1061,13 @@
       setTheme(prefersLight ? "light" : "dark");
     }
 
+    /* =========================================================
+       ✅ Works list
+       ✅ Video thumbnail system added:
+       - thumb: "images/thumbnails/vid1.jpg"
+       Folder suggestion:
+         images/thumbnails/vid1.jpg ... vid7.jpg
+       ========================================================= */
     const works = [
       { title:"Logo Design",  category:"Image", year:"2020", tags:["Logo Design"],  type:"image", file:"images/img1.jpg"  },
       { title:"Flyer Design",  category:"Image", year:"2026", tags:["Flyer Design"],  type:"image", file:"images/img2.jpg"  },
@@ -1068,13 +1081,14 @@
       { title:"Jersey Design", category:"Image", year:"2020", tags:["Jersey Design"], type:"image", file:"images/img10.jpg" },
       { title:"Social Media Post Design", category:"Image", year:"2026", tags:["Social Media Post Design"], type:"image", file:"images/img11.jpg" },
 
-      { title:"Brand Promotional Video", category:"Video", year:"2026", tags:["Brand Promotional Video"], type:"video", file:"videos/vid1.mp4" },
-      { title:"Brand Promotional Video 2", category:"Video", year:"2026", tags:["Brand Promotional Video 2"], type:"video", file:"videos/vid2.mp4" },
-      { title:"Advertisement Video", category:"Video", year:"2025", tags:["Advertisement Video"], type:"video", file:"videos/vid3.mp4" },
-      { title:"Social Media Post Video", category:"Video", year:"2025", tags:["Social Media Post Video"], type:"video", file:"videos/vid4.mp4" },
-      { title:"Trailer Video", category:"Video", year:"2024", tags:["Trailer Video"], type:"video", file:"videos/vid5.mp4" },
-      { title:"Gunshot VFX Video", category:"Video", year:"2022", tags:["Gunshot VFX Video"], type:"video", file:"videos/vid6.mp4" },
-      { title:"Gaming Velocity Video", category:"Video", year:"2025", tags:["Gaming Velocity Video"], type:"video", file:"videos/vid7.mp4" },
+      // ✅ Videos (with custom thumbnails)
+      { title:"Brand Promotional Video", category:"Video", year:"2026", tags:["Brand Promotional Video"], type:"video", file:"videos/vid1.mp4", thumb:"images/thumbnails/vid1.jpg" },
+      { title:"Brand Promotional Video 2", category:"Video", year:"2026", tags:["Brand Promotional Video 2"], type:"video", file:"videos/vid2.mp4", thumb:"images/thumbnails/vid2.jpg" },
+      { title:"Advertisement Video", category:"Video", year:"2025", tags:["Advertisement Video"], type:"video", file:"videos/vid3.mp4", thumb:"images/thumbnails/vid3.jpg" },
+      { title:"Social Media Post Video", category:"Video", year:"2025", tags:["Social Media Post Video"], type:"video", file:"videos/vid4.mp4", thumb:"images/thumbnails/vid4.jpg" },
+      { title:"Trailer Video", category:"Video", year:"2024", tags:["Trailer Video"], type:"video", file:"videos/vid5.mp4", thumb:"images/thumbnails/vid5.jpg" },
+      { title:"Gunshot VFX Video", category:"Video", year:"2022", tags:["Gunshot VFX Video"], type:"video", file:"videos/vid6.mp4", thumb:"images/thumbnails/vid6.jpg" },
+      { title:"Gaming Velocity Video", category:"Video", year:"2025", tags:["Gaming Velocity Video"], type:"video", file:"videos/vid7.mp4", thumb:"images/thumbnails/vid7.jpg" },
     ];
 
     function escapeHtml(str){
@@ -1135,10 +1149,17 @@
       const isVideo = w.type === "video";
       const icon = isVideo ? "🎬" : "🖼️";
 
+      /* =========================================================
+         ✅ Video thumbnail applied here using poster=""
+         - If w.thumb missing, poster will be empty (no break)
+         ========================================================= */
       const mediaHtml = isVideo
         ? `
           <div class="media">
-            <video class="thumb-video" muted playsinline preload="metadata">
+            <video class="thumb-video"
+              muted playsinline
+              preload="metadata"
+              poster="${escapeHtml(w.thumb || "")}">
               <source src="${escapeHtml(w.file)}" type="video/mp4">
             </video>
             <div class="media-tag">▶ Preview</div>
